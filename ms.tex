@@ -1,0 +1,386 @@
+% This is the aspauthor.tex LaTeX file
+% Copyright 2014, Astronomical Society of the Pacific Conference Series
+% Revision:  14 August 2014
+
+% To compile, at the command line positioned at this folder, type:
+% latex aspauthor
+% latex aspauthor
+% dvipdfm aspauthor
+% This will create a file called aspauthor.pdf.
+
+\documentclass[11pt,twoside]{article}
+\usepackage{./asp2014}
+
+\aspSuppressVolSlug
+\resetcounters
+
+\bibliographystyle{asp2014}
+
+\markboth{M.~Juric and the LSST Project}{The LSST Data Management System}
+
+\begin{document}
+
+\title{The LSST Data Management System}
+\author{Mario~Juric,$^1$ Jeffrey Kantor,$^2$, K-T~Lim$^3$
+\affil{$^1$University of Washington, Seattle, WA, U.S.A; \email{mjuric@astro.washington.edu}}
+\affil{$^2$LSST Project Management Office, Tucson, AZ, U.S.A.; \email{jkantor@lsst.org}}
+\affil{$^3$SLAC National Laboratory, Menlo Park, CA, U.S.A.; \email{ktl@slac.stanford.edu}}}
+
+% This section is for ADS Processing.  There must be one line per author.
+\paperauthor{Sample~Author1}{Author1Email@email.edu}{ORCID_Or_Blank}{Author1 Institution}{Author1 Department}{City}{State/Province}{Postal Code}{Country}
+\paperauthor{Sample~Author2}{Author2Email@email.edu}{ORCID_Or_Blank}{Author2 Institution}{Author2 Department}{City}{State/Province}{Postal Code}{Country}
+\paperauthor{Sample~Author3}{Author3Email@email.edu}{ORCID_Or_Blank}{Author3 Institution}{Author3 Department}{City}{State/Province}{Postal Code}{Country}
+
+\begin{abstract}
+
+The Large Synoptic Survey Telescope (LSST; \url{http://lsst.org}) is a planned,
+large-aperture, wide-field, ground-based telescope that will survey half the
+sky every few nights in six optical bands from 320 to 1050 nm.  It will
+explore a wide range of astrophysical questions, ranging from discovering
+``killer'' asteroids, to examining the nature of Dark Energy.
+
+The LSST will produce on average 15 terabytes of data per night, yielding an
+(uncompressed) data set of over 100 petabytes at the end of its 10-year
+mission.  To enable the wide variety of planned science, the LSST Project is
+leading the construction of a new, general-purpose, high-performance,
+scalable, well documented, open source data processing software stack for
+O/IR surveys.  Prototypes of this stack are already capable of processing
+data from existing cameras (e.g., SDSS, DECam, MegaCam), and form the basis
+of the Hyper Supreme-Cam (HSC) Survey data reduction pipeline.  In the
+2020-ies, running on dedicated HPC facilities, this system will enable us to
+process the LSST data stream in near real time, with full-dataset
+reprocessings on annual scale.
+
+In this paper, we review the science goals and the technical design of the
+LSST, focusing on the data management system. We describe its software
+stack and the data products it will generate. Finally, we discuss the 
+exciting opportunities this new codebase represents both for LSST,
+and the astronomical software community as a whole.
+
+\end{abstract}
+
+\section{ The Large Synoptic Survey Telescope }
+
+The Large Synoptic Survey Telescope (LSST; \url{http://lsst.org}) is and
+automated astronomical survey system that will survey half the
+sky every few nights in six optical bands from 320 to 1050 nm \citep{OP}. It
+will explore a wide range of astrophysical questions, ranging from discovering
+``killer'' asteroids, to examining the nature of Dark Energy.
+
+The LSST consists of a large-aperture, wide-field, ground-based telescope
+currently being constructed on El Penon peak of Cerro Pachon in the Chlean
+Andes, a 3.2 gigapixel camera, presently being constructed by a collaboration
+of institutions lead by the SLAC National Laboratory, and a data management
+system, also currently in constructon.
+
+The LSST will produce on average 15 terabytes of data per night, yielding an
+(uncompressed) data set of over 100 petabytes at the end of its 10-year
+mission.  To enable the wide variety of planned science, the LSST Project is
+leading the construction of a new, general-purpose, high-performance,
+scalable, well documented, open source data processing software stack for
+O/IR surveys.  Prototypes of this stack are already capable of processing
+data from existing cameras (e.g., SDSS, DECam, MegaCam), and form the basis
+of the Hyper Supreme-Cam (HSC) Survey data reduction pipeline.  In the
+2020-ies, running on dedicated HPC facilities, this system will enable us to
+process the LSST data stream in near real time, with full-dataset
+reprocessings on annual scale.
+
+\section{ The LSST Data Management System }
+\label{sec:dm}
+
+The rapid cadence and scale of the LSST observing program will produce
+approximately 15 TB per night of raw imaging data\footnote{For
+  comparison, the volume of all imaging data collected over a decade
+  and published in SDSS Data Release 7 \citep{DR7} is approximately 16 TB.}. The large data volume, the real-time aspects, and the complexity of processing involved makes it impractical to defer the data reduction to the LSST end-users. Instead, the data collected by the LSST system will be automatically reduced to scientifically useful catalogs and images by the LSST Data Management (DM) system.
+\\
+
+The principal functions of the LSST Data Management system are to: 
+\begin{itemize}
+\item Process, in real time, the incoming stream of images generated by the camera system during observing by archiving raw images, generating alerts to new sources or sources whose properties have changed, and updating the relevant catalogs (``Level 1'' data products; \S~\ref{Sec:dp}).
+\item Periodically process the accumulated survey data to provide a
+  uniform photometric and astrometric calibration, measure the
+  properties of all detected objects, and characterize objects based on their time-dependent behavior. The results of such a processing run form a {\em Data Release} (DR), which is a static, self-consistent data set suitable for use in performing scientific analyses of LSST data and publication of the results (the ``Level 2'' data products; \S~\ref{Sec:dp}). All data releases will be archived for the entire operational life of the LSST archive.
+\item Facilitate the creation of added-value (``Level 3'';
+  \S~\ref{Sec:dp}) data products, by providing suitable software,
+  application programming interfaces (APIs),  
+and computing infrastructure at the LSST data access centers.
+\item Make all LSST data available through an interface that utilizes
+community-based standards   to the maximum possible extent. Provide
+  enough processing, storage, and network bandwidth to enable user
+  analyses of the data without the need for petabyte-scale data
+  transfers. 
+\end{itemize}
+
+Over the ten years of LSST operations and 11 data releases, this processing will result in a cumulative {\em processed} data size 
+approaching 500 petabytes (PB) for imaging, and over 50 PB for the
+catalog databases. The final data release catalog database alone is expected 
+to be approximately 15 PB in size.
+\\
+
+\begin{figure}
+%
+% NOTE NOTE NOTE: The source of this figure is in DMsandwich.pptx.
+% Edit that file and save it as PDF when an update is needed.
+%
+\hskip -0.2in
+\includegraphics[width=1.1\hsize,clip]{DMsandwich.pdf}
+\caption{The three-layered architecture of the data management system 
+(application [red, top], middleware [purple, middle], and infrastructure [blue, bottom] layers) enables scalability, reliability, and evolutionary capability.} 
+\label{Fig:DM1}
+\end{figure}
+
+The data management system is conceptually divided into three layers: an
+infrastructure layer consisting of the computing, storage, and
+networking hardware and system software; a middleware layer, which
+handles distributed processing, data access, user interface, and
+system operations services; and an applications layer, which includes
+the data pipelines and products and the science data archives (see
+Fig.~\ref{Fig:DM1}).
+
+\begin{figure*}
+%
+% NOTE NOTE NOTE: The source of this figure is in DMX2.pptx
+% Edit that file and save it as PDF when an update is needed.
+%
+\hskip 0.25in
+\includegraphics[width=0.95\hsize,clip]{DMX2.pdf}
+\caption{The LSST data flow from the mountain summit/base facility in
+Chile to the data access center and archive centers in the U.S.}
+\label{Fig:DM2}
+\end{figure*}
+
+Physically, the DM system components will span four key facilities on three
+continents: the Summit Facility at  Cerro Pach\'on (where the initial
+detector cross-talk 
+correction will be performed), the Base Facility in La Serena (which will serve
+as a retransmission hub for data 
+uploads to North America, as well as the data access center for the Chilean
+community), the central Archive Facility at the National Center
+for Supercomputing Applications (NCSA) in Champaign, Illinois, and a
+satellite data processing center at Centre de Calcul de l'Institut National 
+de Physique Nucleaire et de Physique des Particules (CC-IN2P3) in Lyon, France.
+All Level 1 (nightly) and 50\% of Level 2 (data release) processing will take place at the
+Archive Facility, which will also serve as a data access center
+for the US community. The remaining 50\% of data processing will be performed at
+the satellite center in Lyon.
+
+The data will be transported between the centers over existing high-speed optical fiber 
+links from South America to the U.S. (see Fig.~\ref{Fig:DM2}).
+Although the data processing center will have substantial computing 
+power (e.g., the central facility will peak at $\sim 1.6$~petaflops of 
+compute power), the continuation of current trends suggests that the center will 
+not qualify for the top 500 list by the time of first light.
+Hence, while LSST is making a novel use of advances in information technology, 
+it is not taking the risk of pushing the expected technology to the limit, reducing
+the overall risk to the project. 
+\\
+
+A novel aspect of the LSST DM system will be its ``Level 3"
+capabilities, allowing the end-users to create, store, and share
+custom data products not created by standard LSST processing. These
+could be new catalogs created by simple post-processing of the LSST
+data release catalogs, or entirely new data products generated by
+running custom code on raw LSST data. The LSST software stack (described
+below) will be made available to LSST end-users, as a basis on which
+to quickly build such code. Approximately 10\% of the total
+budget for the LSST Archive Center compute and storage capacity has
+been reserved for end-user, Level 3, processing support
+infrastructure\footnote{Furthermore, the data management system 
+architecture will enable Level 3 tasks to "piggyback" onto annual 
+Level 2 reprocessings, leveraging considerable I/O and
+computing resources employed in the production of a data release.}. 
+
+\section{The LSST software stack}
+\label{sec:dmstack}
+
+The {\em LSST Software Stack} is a well documented, state-of-the-art,
+high-performance, scalable, multi-camera, open source, O/IR survey
+data processing and analysis system, built to enable LSST survey data
+reduction and the writing of custom, user-driven, code for Level 3
+processing. It comprises 
+all science pipelines needed to accomplish LSST data processing tasks
+(e.g., calibration, single frame processing, coaddition, image
+differencing, multi-epoch measurement, asteroid orbit determination,
+etc.), the necessary data 
+access and orchestration middleware, as well as the database and user
+interface components. 
+
+Algorithm development for the LSST software builds on the expertize
+and experience of prior large astronomical surveys (including SDSS,
+Pan-STARRS, DES,  
+SuperMACHO, ESSENCE,  DLS, CFHTLS, and UKIDSS). The pipelines written 
+for these surveys have demonstrated that it is possible to carry out
+largely autonomous data 
+reduction of large data sets, automated detection of sources and
+objects, and the  
+extraction of scientifically useful characteristics of those objects. 
+While firmly footed in this prior history, the LSST software stack has 
+largely been written anew, for reasons of performance, extendability, and
+maintainability. All LSST codes have been designed and implemented 
+following sofware engineering best practices, including modularity, clear definition
+of interfaces, continuous integration, 
+utilization of unit testing, a single set of documentation and coding
+standards, and others. The primary implementation language is Python and, where
+necessary for performance reasons, C++\footnote{All components implemented 
+in C++ have been wrapped and exposed as Python modules to the rest 
+of the system. Python truly is the ``native language of LSST''.}.
+See the contribution by Jenness et al. for more discussion on the 
+architecture of the LSST software stack.
+
+\begin{figure}
+%
+% NOTE NOTE NOTE: The source of this figure is in DMStripe82.pptx
+%
+\includegraphics[width=1.0\hsize,clip]{DMStripe82.jpg}
+\caption{
+A small region in the vicinity of globular cluster M2, taken from a coadd of
+SDSS Stripe 82 data produced with LSST software stack prototypes.  The
+coaddition employs a novel ``background matching" technique that improves
+background estimation and preserves the diffuse structures in the resulting
+coadd.  The full coadd can be browsed at \url{http://moe.astro.washington.edu/sdss}.}
+\label{Fig:DMStripe82}
+\end{figure}
+
+
+The LSST data management software has been prototyped for over eight
+years. It has been exercised in eight data challenges, with increasing
+degrees of complexity. Besides processing simulated LSST data
+(\S~\ref{sec:imsim}), it has been used to process images from CFHTLS
+and SDSS \citep{DR7}. As an example,
+Figure~\ref{Fig:DMStripe82} shows a small region in the vicinity of M2
+taken from a large coaddition of SDSS Stripe 82 data, generated with LSST
+software stack prototypes. 
+\\
+
+The LSST software stack is free software, licensed under the terms of the GNU General
+Public License, Version 3. The stack
+prototype code and documentation are available via \url{http://ls.st/ug}.
+Its open source nature, an open development
+process, attention to software engineering, a long-term project
+commitment and a modular design that can be modified for use with
+other cameras 
+may make it useful for the processing of imaging data beyond LSST.  
+
+\subsection{             Data Products                    } 
+\label{Sec:dp}
+
+Data collected by the LSST telescope and camera will be automatically processed to {\em data products} -- catalogs, alerts,
+and reduced images -- by the LSST Data Management system
+(\S~\ref{sec:dm}). These products are designed to be sufficient to
+enable a large majority of LSST science cases, without the need to
+work directly with the raw pixels.  We give a high-level overview of
+the LSST data products here; further details may be found in the LSST
+Data Products Definition Document (Juri\'{c} et al. 2013). 
+
+\vskip 1em
+
+Two major categories of data products will be produced and delivered by LSST DM:
+\begin{itemize}
+\item {\bf Level 1 data products}, designed to support the discovery,
+  characterization, and rapid follow-up of time-dependent phenomena
+  (``transient science''). These will be generated continuously every
+  observing night, by detecting and characterizing sources in images
+  differenced against deep templates. They will include alerts to
+  objects that were newly discovered, or have changed brightness or
+  position at a statistically significant level. The alerts to such
+  events will be published within 60   seconds of observation.\\ 
+\\
+In addition to transient science, Level 1 data products will support
+discovery and follow-up of objects in the Solar System. Objects with
+motions sufficient to cause trailing in a single exposure will be
+identified and flagged as such when the alerts are broadcast. Those
+that are not trailed will be identified and linked based on their
+motion from observation to observation, over a period of a few
+days. Their orbits will be published within 24 hours of
+identification. The efficiency of linking (and thus the completeness
+of the resulting orbit catalog) will depend on the final observing
+cadence chosen for LSST, as well as the performance of the linking
+algorithm (\citep{MOPSIAU}).
+\item {\bf Level 2 data products} are designed to enable systematics- and flux-limited science, and will be made available in annual Data Releases. These will include the (reduced and raw) single-epoch images, deep coadds of the observed sky, catalogs of objects detected in LSST data, catalogs of sources (the detections and measurements of objects on individual visits), and catalogs of ``forced sources" (measurements of flux on individual visits at locations where objects were detected by LSST or other surveys). LSST data releases will also include fully reprocessed Level 1 data products, as well as all metadata and software necessary for the end-user to reproduce any aspect of LSST data release processing.\\
+\\
+A noteworthy aspect of LSST Level 2 processing is that it will largely
+rely on {\bf multi-epoch model fitting}, or {\bf \em MultiFit}, to
+perform near-optimal characterization of object properties. That is,
+while the coadds will be used to perform object {\em detection}, the
+{\em measurement} of their properties will be performed by
+simultaneously fitting (PSF-convolved) models to single-epoch
+observations. An extended source model -- a constrained linear
+combination of two S\'ersic profiles -- and a point source model with
+proper motion -- will generally be 
+fitted to each detected object\footnote{For performance reasons, it is
+  likely that only the point source model will be fitted in the most
+  crowded regions of the Galactic plane.}.\\ 
+\\
+Secondly, for the extended source model fits, the LSST will
+characterize and store the shape of the associated likelihood surface
+(and the posterior), and not just the maximum likelihood values and
+covariances. The characterization will be accomplished by sampling,
+with up to $\sim$200 (independent) likelihood samples retained for
+each object. For storage cost reasons, these samples
+may be retained only for those bands of greatest interest for
+weak lensing studies. 
+
+\end{itemize}
+
+
+While a large majority of science cases will be adequately served by
+Level 1 and 2 data products, a limited number of highly specialized
+investigations may require custom, user-driven, processing of LSST
+data. This processing will be most efficiently performed at the 
+LSST Archive Center, given the size of the LSST data set and the
+associated storage and computational challenges. To enable such use
+cases, the LSST DM system will devote the equivalent of 10\% of its
+processing and storage capabilities to creation, use, and federation
+of {\bf Level 3} (user-created) data products. It will also allow the
+science teams to use the LSST database infrastructure to store and
+share their results. 
+
+To further enable user-driven Level 3 processing, the LSST software
+stack has been explicitly architected with reusability and
+extendability in mind, and will be made available to the LSST user
+community (\S~\ref{sec:dmstack}). This will allow the LSST users to
+more rapidly develop custom Level 3 processing codes, leveraging 15+
+years of investment and experience put into LSST codes. In addition to
+executing such customized codes at the LSST data centers, LSST users
+will be able to run it on their own computational resources as well.\\
+
+We have described that approximately 10\% of the observing time will
+be devoted to mini-surveys that do not follow the LSST baseline
+cadence (\S~\ref{Sec:minisurveys}). The data products for these
+programs will be generated using the same processing system and
+exhibit the same general characteristics of Level 1 and 2 data
+products, but these data may be reduced on a somewhat different
+timescale.  
+
+
+\acknowledgements 
+
+LSST is a public-private partnership.  Design and development activity is
+supported by in part the National Science Foundation under Scientific
+Program Order No. 9 (AST-0551161), Scientific Program Order No. 1
+(AST-0244680) through Cooperative Agreement AST-0132798, and grant AST-0441069. 
+Portions of this work are supported by the Department of Energy under contract
+DE-AC02-76SF00515 with the Stanford Linear Accelerator Center, contract
+DE-AC02-98CH10886 with Brookhaven National Laboratory, contract
+DE-AC52-07NA27344 with Lawrence Livermore National Laboratory, and grant
+DE-FG02-07ER41505. A portion of this work was conducted at the Jet Propulsion 
+Laboratory, California Institute of Technology, under a contract with NASA.
+Gifts by the Charles Simonyi Fund for Arts and Sciences,
+and Bill Gates, and grants by W. M. Keck Foundation and the TABASGO Foundation
+are gratefully acknowledged. Additional funding has been provided by private gifts, grants 
+to universities, and in-kind support at Department of Energy laboratories and other 
+LSSTC Institutional Members.  
+
+%\bibliography{editor}  % For BibTex
+
+% For non-BibTex:
+\begin{thebibliography}{}
+
+\bibitem[Abazajian et al.(2009)]{DR7} Abazajian, K.N., Adelman-McCarthy, J.K., Ag\"ueros,  M.A. et al.~2009, Astrophysical Journal Supplements, 182, 543
+\bibitem[Ivezic et al.(2013)]{OP} Ivezic,~Z.~et~al.~for~the~LSST~Collaboration~2008, ``LSST: from Science Drivers to Reference Design and Anticipated Data Products'', arXiv:0805.2366
+\bibitem[Jenness et al.(2015)]{Jenness15} Jenness et al. 2015
+\bibitem[Juric et al.(2013)]{DPDD} Juric et al.~2009, ``The LSST Data Products Definition Document'', {\footnotesize \url{http://ls.st/lse-163}}
+
+\end{thebibliography}
+
+\end{document}
