@@ -1,2 +1,2 @@
 all:
-	pdflatex ms.tex
+	pdflatex O3-1.tex
