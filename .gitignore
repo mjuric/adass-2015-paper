@@ -1,5 +1,5 @@
 *~
-ms.aux
-ms.log
-ms.out
+*.aux
+*.log
+*.out
 ms.pdf
