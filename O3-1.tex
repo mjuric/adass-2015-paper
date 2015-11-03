@@ -64,7 +64,7 @@ and the astronomical software community as a whole.
 
 The Large Synoptic Survey Telescope (LSST; \url{http://lsst.org}) is and
 automated astronomical survey system that will survey half the
-sky every few nights in six optical bands from 320 to 1050 nm \citep{OP}. It
+sky every few nights in six optical bands from 320 to 1050 nm \citep{2008arXiv0805.2366I}. It
 will explore a wide range of astrophysical questions, ranging from discovering
 ``killer'' asteroids, to examining the nature of Dark Energy.
 
@@ -92,7 +92,7 @@ reprocessings on annual scale.
 The rapid cadence and scale of the LSST observing program will produce
 approximately 15 TB per night of raw imaging data\footnote{For
   comparison, the volume of all imaging data collected over a decade
-  and published in SDSS Data Release 7 \citep{DR7} is approximately 16 TB.}. The large data volume, the real-time aspects, and the complexity of processing involved makes it impractical to defer the data reduction to the LSST end-users. Instead, the data collected by the LSST system will be automatically reduced to scientifically useful catalogs and images by the LSST Data Management (DM) system.
+  and published in SDSS Data Release 7 \citep{2009ApJS..182..543A} is approximately 16 TB.}. The large data volume, the real-time aspects, and the complexity of processing involved makes it impractical to defer the data reduction to the LSST end-users. Instead, the data collected by the LSST system will be automatically reduced to scientifically useful catalogs and images by the LSST Data Management (DM) system.
 \\
 
 The principal functions of the LSST Data Management system are to: 
@@ -225,7 +225,7 @@ standards, and others. The primary implementation language is Python and, where
 necessary for performance reasons, C++\footnote{All components implemented 
 in C++ have been wrapped and exposed as Python modules to the rest 
 of the system. Python truly is the ``native language of LSST''.}.
-See the contribution by Jenness et al. for more discussion on the 
+See the contribution by \citet{P056_adassxxv} for more discussion on the 
 architecture of the LSST software stack.
 
 \begin{figure}
@@ -247,7 +247,7 @@ The LSST data management software has been prototyped for over eight
 years. It has been exercised in eight data challenges, with increasing
 degrees of complexity. Besides processing simulated LSST data
 (\S~\ref{sec:imsim}), it has been used to process images from CFHTLS
-and SDSS \citep{DR7}. As an example,
+and SDSS \citep{2009ApJS..182..543A}. As an example,
 Figure~\ref{Fig:DMStripe82} shows a small region in the vicinity of M2
 taken from a large coaddition of SDSS Stripe 82 data, generated with LSST
 software stack prototypes. 
@@ -271,7 +271,7 @@ and reduced images -- by the LSST Data Management system
 enable a large majority of LSST science cases, without the need to
 work directly with the raw pixels.  We give a high-level overview of
 the LSST data products here; further details may be found in the LSST
-Data Products Definition Document (Juri\'{c} et al. 2013). 
+Data Products Definition Document \citep{DPDD}.
 
 \vskip 1em
 
@@ -372,16 +372,6 @@ are gratefully acknowledged. Additional funding has been provided by private gif
 to universities, and in-kind support at Department of Energy laboratories and other 
 LSSTC Institutional Members.  
 
-%\bibliography{editor}  % For BibTex
-
-% For non-BibTex:
-\begin{thebibliography}{}
-
-\bibitem[Abazajian et al.(2009)]{DR7} Abazajian, K.N., Adelman-McCarthy, J.K., Ag\"ueros,  M.A. et al.~2009, Astrophysical Journal Supplements, 182, 543
-\bibitem[Ivezic et al.(2013)]{OP} Ivezic,~Z.~et~al.~for~the~LSST~Collaboration~2008, ``LSST: from Science Drivers to Reference Design and Anticipated Data Products'', arXiv:0805.2366
-\bibitem[Jenness et al.(2015)]{Jenness15} Jenness et al. 2015
-\bibitem[Juric et al.(2013)]{DPDD} Juric et al.~2009, ``The LSST Data Products Definition Document'', {\footnotesize \url{http://ls.st/lse-163}}
-
-\end{thebibliography}
+\bibliography{O3-1}  % For BibTex
 
 \end{document}
