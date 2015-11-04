@@ -79,17 +79,17 @@ and the astronomical software community as a whole.
 
 \section{ The Large Synoptic Survey Telescope }
 
-The Large Synoptic Survey Telescope (LSST; \url{http://lsst.org}) is and
+The Large Synoptic Survey Telescope (LSST; \url{http://lsst.org}) is an
 automated astronomical survey system that will survey half the
-sky every few nights in six optical bands from 320 to 1050 nm \citep{2008arXiv0805.2366I}. It
+sky every few nights in six optical bands from 320 to 1050\,nm \citep{2008arXiv0805.2366I}. It
 will explore a wide range of astrophysical questions, ranging from discovering
 ``killer'' asteroids, to examining the nature of Dark Energy.
 
 The LSST consists of a large-aperture, wide-field, ground-based telescope
-currently being constructed on El Penon peak of Cerro Pachon in the Chlean
+currently being constructed on El Penon peak of Cerro Pach\'{o}n in the Chilean
 Andes, a 3.2 gigapixel camera, presently being constructed by a collaboration
 of institutions lead by the SLAC National Laboratory, and a data management
-system, also currently in constructon.
+system, also currently in construction.
 
 The LSST will produce on average 15 terabytes of data per night, yielding an
 (uncompressed) data set of over 100 petabytes at the end of its 10-year
@@ -219,7 +219,7 @@ data processing and analysis system, built to enable LSST survey data
 reduction and the writing of custom, user-driven, code for Level 3
 processing. It comprises
 all science pipelines needed to accomplish LSST data processing tasks
-(e.g., calibration, single frame processing, coaddition, image
+(e.g., calibration, single frame processing, co-addition, image
 differencing, multi-epoch measurement, asteroid orbit determination,
 etc.), the necessary data
 access and orchestration middleware, as well as the database and user
@@ -237,7 +237,7 @@ extraction of scientifically useful characteristics of those objects.
 While firmly footed in this prior history, the LSST software stack has
 largely been written anew, for reasons of performance, extendability, and
 maintainability. All LSST codes have been designed and implemented
-following sofware engineering best practices, including modularity, clear definition
+following software engineering best practices, including modularity, clear definition
 of interfaces, continuous integration,
 utilization of unit testing, a single set of documentation and coding
 standards, and others. The primary implementation language is Python and, where
@@ -253,11 +253,11 @@ architecture of the LSST software stack.
 %
 \includegraphics[width=1.0\hsize,clip]{DMStripe82.pdf}
 \caption{
-A small region in the vicinity of globular cluster M2, taken from a coadd of
+A small region in the vicinity of globular cluster M2, taken from a co-add of
 SDSS Stripe 82 data produced with LSST software stack prototypes.  The
-coaddition employs a novel ``background matching" technique that improves
+co-addition employs a novel ``background matching" technique that improves
 background estimation and preserves the diffuse structures in the resulting
-coadd.  The full coadd can be browsed at \url{http://moe.astro.washington.edu/sdss}.}
+co-add.  The full co-add can be browsed at \url{http://moe.astro.washington.edu/sdss}.}
 \label{Fig:DMStripe82}
 \end{figure}
 
@@ -268,7 +268,7 @@ degrees of complexity. Besides processing simulated LSST data
 (\S~\ref{sec:imsim}), it has been used to process images from CFHTLS
 and SDSS \citep{2009ApJS..182..543A}. As an example,
 Figure~\ref{Fig:DMStripe82} shows a small region in the vicinity of M2
-taken from a large coaddition of SDSS Stripe 82 data, generated with LSST
+taken from a large co-addition of SDSS Stripe 82 data, generated with LSST
 software stack prototypes.
 \\
 
@@ -316,12 +316,12 @@ identification. The efficiency of linking (and thus the completeness
 of the resulting orbit catalog) will depend on the final observing
 cadence chosen for LSST, as well as the performance of the linking
 algorithm (\citep{MOPSIAU}).
-\item {\bf Level 2 data products} are designed to enable systematics- and flux-limited science, and will be made available in annual Data Releases. These will include the (reduced and raw) single-epoch images, deep coadds of the observed sky, catalogs of objects detected in LSST data, catalogs of sources (the detections and measurements of objects on individual visits), and catalogs of ``forced sources" (measurements of flux on individual visits at locations where objects were detected by LSST or other surveys). LSST data releases will also include fully reprocessed Level 1 data products, as well as all metadata and software necessary for the end-user to reproduce any aspect of LSST data release processing.\\
+\item {\bf Level 2 data products} are designed to enable systematics- and flux-limited science, and will be made available in annual Data Releases. These will include the (reduced and raw) single-epoch images, deep co-adds of the observed sky, catalogs of objects detected in LSST data, catalogs of sources (the detections and measurements of objects on individual visits), and catalogs of ``forced sources" (measurements of flux on individual visits at locations where objects were detected by LSST or other surveys). LSST data releases will also include fully reprocessed Level 1 data products, as well as all metadata and software necessary for the end-user to reproduce any aspect of LSST data release processing.\\
 \\
 A noteworthy aspect of LSST Level 2 processing is that it will largely
 rely on {\bf multi-epoch model fitting}, or {\bf \em MultiFit}, to
 perform near-optimal characterization of object properties. That is,
-while the coadds will be used to perform object {\em detection}, the
+while the co-adds will be used to perform object {\em detection}, the
 {\em measurement} of their properties will be performed by
 simultaneously fitting (PSF-convolved) models to single-epoch
 observations. An extended source model -- a constrained linear
