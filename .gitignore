@@ -2,4 +2,6 @@
 *.aux
 *.log
 *.out
-ms.pdf
+*.bbl
+*.blg
+*.tar.gz
