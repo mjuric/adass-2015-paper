@@ -267,11 +267,11 @@ computing resources employed in the production of a data release.}.
 \section{The LSST software stack}
 \label{sec:dmstack}
 
-The {\em LSST Software Stack} is a well documented, state-of-the-art,
+The {\em LSST Software Stack} aspires to be a well documented, state-of-the-art,
 high-performance, scalable, multi-camera, open source, O/IR survey
 data processing and analysis system, built to enable LSST survey data
 reduction and the writing of custom, user-driven, code for Level 3
-processing. It comprises
+processing. Once completed, it will comprise of
 all science pipelines needed to accomplish LSST data processing tasks
 (e.g., calibration, single frame processing, co-addition, image
 differencing, multi-epoch measurement, asteroid orbit determination,
@@ -279,7 +279,7 @@ etc.), the necessary data
 access and orchestration middleware, as well as the database and user
 interface components.
 
-Algorithm development for the LSST software builds on the expertize
+Algorithm development for the LSST software is building on the expertise
 and experience of prior large astronomical surveys (including SDSS,
 Pan-STARRS, DES,
 SuperMACHO, ESSENCE,  DLS, CFHTLS, and UKIDSS). The pipelines written
@@ -290,14 +290,12 @@ objects, and the
 extraction of scientifically useful characteristics of those objects.
 While firmly footed in this prior history, the LSST software stack has
 largely been written anew, for reasons of performance, extendability, and
-maintainability. All LSST codes have been designed and implemented
+maintainability. All LSST codes are being developed with the intent of
 following software engineering best practices, including modularity, clear definition
 of interfaces, continuous integration,
 utilization of unit testing, a single set of documentation and coding
-standards, and others. The primary implementation language is Python and, where
-necessary for performance reasons, C++\footnote{All components implemented
-in C++ have been wrapped and exposed as Python modules to the rest
-of the system. Python truly is the ``native language of LSST''.}.
+standards, and others. The primary user-facing implementation language is Python and, where
+necessary for performance reasons or when the algorithms require access to complex data structures, C++.
 See the contribution by \citet{P056_adassxxv} for more discussion on the
 architecture of the LSST software stack.
 
@@ -330,8 +328,8 @@ The LSST software stack is free software, licensed under the terms of the GNU Ge
 Public License, Version 3. The stack
 prototype code and documentation are available via \url{http://ls.st/ug}.
 Its open source nature, an open development
-process, attention to software engineering, a long-term project
-commitment and a modular design that can be modified for use with
+process, a long-term project
+commitment and a design that can be modified for use with
 other cameras
 may make it useful for the processing of imaging data beyond LSST.
 
