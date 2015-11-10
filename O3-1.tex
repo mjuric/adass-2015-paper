@@ -169,23 +169,27 @@ The Large Synoptic Survey Telescope (LSST; \url{http://lsst.org}) will be an
 automated astronomical survey system that will survey approximately
 $10,000$~deg$^2$ of the sky every few nights in six optical bands from 320 
 to 1050\,nm \citep{2008arXiv0805.2366I}. Over its 10-year lifetime, it will
-uniformly and repeatedly image about $18,000$~deg$^2$ over $800$~times. 
-These data will be used to explore
+uniformly and repeatedly image about $18,000$~deg$^2$ of the sky 
+over $800$~times. These data will be used to explore
 a wide range of astrophysical questions, ranging from discovering
 ``killer'' asteroids, to examining the nature of Dark Energy
 \citep[e.g., see][]{2009arXiv0912.0201L}.
 
-The LSST consists of a large-aperture, wide-field, ground-based telescope \citep{2014SPIE.9145E..1AG}
+The LSST survey system consists of a large-aperture, wide-field, ground-based telescope \citep{2014SPIE.9145E..1AG}
 currently being constructed on the El Pe\~n\'{o}n peak of Cerro Pach\'{o}n in the Chilean
 Andes, a 3.2 gigapixel camera \citep{2010SPIE.7735E..0JK}, presently being constructed by a collaboration
 of institutions led by the SLAC National Laboratory, and a data management
 system, also currently under construction.
 
 In this paper, we review the science goals and the technical design of the
-LSST Data Management system (LSST DM; \url{http://dm.lsst.org}). We describe its computing facilities, networks,
-the software stack, and the data products it will generate. Finally, we 
-point out the exciting opportunities this new codebase represents both for LSST,
-and the astronomical software community as a whole.
+LSST Data Management system (LSST DM; \url{http://dm.lsst.org}). 
+We begin by describing the overall architecture of the system in
+Section~\ref{sec:dm}. In Section~\ref{sec:dmstack}, we discuss the software
+stack being developed for processing and serving of LSST data. In
+Section~\ref{sec:dp}, we discuss the resulting data products. We 
+conclude by discussing opportunities this new codebase 
+represents both for LSST, and the astronomical software community as
+a whole in Section~\ref{sec:summary}.
 
 \section{ The LSST Data Management System }
 \label{sec:dm}
@@ -217,7 +221,8 @@ community-based standards   to the maximum possible extent. Provide
 Over the ten years of LSST operations and 11 data releases, this processing will result in a cumulative {\em processed} data size
 approaching 500 petabytes (PB) for imaging, and over 50 PB for the
 catalog databases. The final data release catalog database alone is expected
-to be approximately 15 PB in size. A more detailed overview of the data products will be given in Section~\ref{Sec:dp}.
+to be approximately 15 PB in size. A more detailed overview of the data products will be given in
+Section~\ref{sec:dp}.
 \\
 
 \begin{figure}[!t]
@@ -373,7 +378,7 @@ used to produce two data releases of HSC-S data \citep{XXX}.
 \\
 
 \section{             LSST Data Products                    }
-\label{Sec:dp}
+\label{sec:dp}
 
 Data collected by the LSST telescope and camera will be automatically processed to {\em data products} -- catalogs, alerts,
 and reduced images -- by the LSST Data Management system
@@ -456,6 +461,7 @@ executing such customized codes at the LSST data centers, LSST users
 will be able to run it on their own computational resources as well.\\
 
 \section{               Summary              }
+\label{sec:summary}
 
 The LSST has been envisioned as a highly automated survey system,
 designed to enable investigations of phenomena on timescales ranging
