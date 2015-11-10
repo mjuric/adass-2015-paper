@@ -355,19 +355,13 @@ degrees of complexity. Besides processing simulated LSST data
 and SDSS \citep{2009ApJS..182..543A}. As an example,
 Figure~\ref{Fig:DMStripe82} shows a small region in the vicinity of M2
 taken from a large co-addition of SDSS Stripe 82 data, generated with LSST
-software stack prototypes.
+software stack prototypes. Furthermore, the current development versions
+of the LSST software stack form the basis for the data processing pipelines
+of the Subaru Hyper-Suprime Cam Survey \citep{XXXX}, and have successfully
+used to produce two data releases of HSC-S data \citep{XXX}.
 \\
 
-The LSST software stack is free software, licensed under the terms of the GNU General
-Public License, Version 3. The stack
-prototype code and documentation are available via \url{http://ls.st/ug}.
-Its open source nature, an open development process, a long-term project
-commitment and a design that can be modified for use with other cameras
-may make it useful for the processing of imaging data beyond LSST.
-For example, the LSST software stack forms the basis for the data
-processing pipelines of the Subaru Hyper-Suprime Cam Survey \citep{XXXX}.
-
-\subsection{             Data Products                    }
+\section{             LSST Data Products                    }
 \label{Sec:dp}
 
 Data collected by the LSST telescope and camera will be automatically processed to {\em data products} -- catalogs, alerts,
@@ -449,6 +443,26 @@ more rapidly develop custom Level 3 processing codes, leveraging 15+
 years of investment and experience put into LSST codes. In addition to
 executing such customized codes at the LSST data centers, LSST users
 will be able to run it on their own computational resources as well.\\
+
+\section{               Summary              }
+
+The LSST has been envisioned as a highly automated survey system,
+designed to enable investigations of phenomena on timescales ranging
+from minutes to years, with flux limits from $r \sim 24.5$ (single visit)
+to $27.5$ (coadded), and spanning approximately half the sky. A
+comprehensive data management system, such as the one described in this paper,
+is necessary to make possible the research expected of such a system.
+\\
+
+Though built to enable LSST science, we are hopeful that the individual
+components of LSST data management system -- and especially the software
+stack -- will be of broader utility.  The LSST software stack is free
+software, licensed under the terms of the GNU General Public License,
+Version 3.  The stack prototype code and documentation are available via
+\url{http://ls.st/ug}.  Its open source nature, an open development process,
+a long-term project commitment and a design that can be modified for use
+with other cameras may make it useful for the processing of imaging data
+beyond LSST.
 
 \acknowledgements
 
