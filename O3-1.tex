@@ -305,21 +305,23 @@ The {\em LSST Software Stack} aspires to be a well documented, state-of-the-art,
 high-performance, scalable, multi-camera, open source, O/IR survey
 data processing and analysis system, built to enable LSST survey data
 reduction and the writing of custom, user-driven, code for Level 3
-processing. It is being designed and implemented by a team distributed
-across six institutions: the LSST Project Management Office, IPAC, NCSA, 
+processing. Its design and implementation are led by a team distributed
+across six institutions (the LSST Project Management Office, IPAC, NCSA, 
 Princeton University, SLAC National Laboratory and the University
-of Washington, Once completed, it will comprise of
+of Washington) but also includes contributions from external contributors.
+Once completed, it will comprise of
 all science pipelines \citep{LDM-151, LDM-156} needed to accomplish LSST data processing tasks
 (e.g., calibration, single frame processing, co-addition, image
 differencing, multi-epoch measurement, asteroid orbit determination,
 etc.), the necessary data
-access and orchestration middleware, as well as the 
+access and orchestration middleware \citep{LDM-152}, as well as the 
 database \citep{LDM-135} and science user interface (SUI) components \citep{LDM-131}.
 The SUI components are planned to be based on IPAC's Firefly toolkit,
 described by \citet{O10-1_adassxxv} later in this volume.
+\\
 
-Algorithm development for the LSST software is building on the expertise
-and experience of prior large astronomical surveys, such as
+Algorithm development for the LSST software builds on the expertise
+and experience of prior large astronomical surveys such as
 SDSS \citep{2000AJ....120.1579Y},
 Pan-STARRS \citep{2006amos.confE..50M,2010SPIE.7733E..0EK},
 DES \citep{DESDM},
@@ -334,6 +336,7 @@ The pipelines written for these surveys have demonstrated that it is
 possible to carry out largely autonomous data reduction of large data 
 sets, automated detection of sources and objects, and the
 extraction of scientifically useful characteristics of those objects.
+
 While firmly footed in this prior history, the LSST software stack has
 largely been written anew, for reasons of performance, extendability, and
 maintainability. All LSST codes are being developed with the intent of
@@ -344,6 +347,7 @@ standards, and others. The primary user-facing implementation language is Python
 necessary for performance reasons or when the algorithms require access to complex data structures, C++.
 See the contribution by \citet{P056_adassxxv} in this conference for 
 more discussion on the architecture of the LSST software stack.
+\\
 
 \begin{figure}[!t]
 %
@@ -370,10 +374,10 @@ has been used to process images from CFHTLS
 and SDSS \citep{2009ApJS..182..543A}. As an example,
 Figure~\ref{Fig:DMStripe82} shows a small region in the vicinity of M2
 taken from a large co-addition of SDSS Stripe 82 data, generated with LSST
-software stack prototypes. Furthermore, the current development versions
-of the LSST software stack form the basis for the data processing pipelines
-of the Subaru Hyper-Suprime Cam Survey \citep{XXXX}, and have successfully
-used to produce two data releases of HSC-S data \citep{XXX}.
+software stack prototypes. Furthermore, the current development version
+of the LSST software stack forms the basis for the data processing pipelines
+of the Subaru Hyper-Suprime Cam Survey \citep{2012SPIE.8446E..0ZM} and 
+has been used successfully to produce two data releases of HSC Survey data.
 \\
 
 \section{             LSST Data Products                    }
