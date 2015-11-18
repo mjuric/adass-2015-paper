@@ -179,8 +179,7 @@ a wide range of astrophysical questions, ranging from discovering
 
 The LSST survey system consists of a large-aperture, wide-field, ground-based telescope \citep{2014SPIE.9145E..1AG}
 currently being constructed on the El Pe\~n\'{o}n peak of Cerro Pach\'{o}n in the Chilean
-Andes, a 3.2 gigapixel camera \citep{2010SPIE.7735E..0JK}, presently being constructed by a collaboration
-of institutions led by the SLAC National Laboratory, and a data management
+Andes, a 3.2 gigapixel camera \citep{2010SPIE.7735E..0JK}, and a data management
 system, also currently under construction.
 
 In this paper, we review the science goals and the technical design of the
@@ -201,6 +200,8 @@ approximately 15 TB per night of raw imaging data\footnote{For
   comparison, the volume of all imaging data collected over a decade
   and published in SDSS Data Release 7 \citep{2009ApJS..182..543A} is approximately 16 TB.}. The large data volume, the real-time aspects, and the complexity of processing involved makes it impractical to defer the data reduction to the LSST end-users. Instead, the data collected by the LSST system will be automatically reduced to scientifically useful catalogs and images by the LSST Data Management (DM) system.
 \\
+
+
 
 The principal functions of the LSST Data Management system \citep{lsstSRD} are to:
 \begin{itemize}
@@ -281,8 +282,8 @@ for the US community. The remaining 50\% of data processing will be performed at
 the satellite center in Lyon.
 
 The data will be transported between the centers over existing and new high-speed optical fiber
-links from South America to the U.S. (see Fig.~\ref{Fig:DM2}).
-The data processing center will have substantial computing
+links from South America to the U.S., and from the U.S. to France (see Fig.~\ref{Fig:DM2}).
+The data processing centers will have substantial computing
 power (e.g., the central facility will peak at $\sim 1.6$~petaflops of
 compute power).
 \\
@@ -389,8 +390,9 @@ all science pipelines \citep{LDM-151, LDM-156} needed to accomplish LSST data pr
 (e.g., calibration, single frame processing, co-addition, image
 differencing, multi-epoch measurement, asteroid orbit determination,
 etc.), the necessary data
-access and orchestration middleware \citep{LDM-152}, as well as the
-database \citep{LDM-135,Wang:2011:QDS:2063348.2063364} and science user interface (SUI) components \citep{LDM-131}.
+access and orchestration middleware \citep{LDM-152}, the
+image store and catalog database \citep{LDM-135,Wang:2011:QDS:2063348.2063364}
+as well as the science user interface (SUI) components \citep{LDM-131}.
 The SUI components are planned to be based on IPAC's Firefly toolkit,
 described by \citet{O10-1_adassxxv} later in this volume.
 \\
@@ -418,7 +420,7 @@ maintainability. All LSST codes are being developed with the intent of
 following software engineering best practices, including modularity, clear definition
 of interfaces, continuous integration,
 utilization of unit testing, a single set of documentation and coding
-standards, and others. The primary user-facing implementation language is Python and, where
+standards. The primary user-facing implementation language is Python and, where
 necessary for performance reasons or when the algorithms require access to complex data structures, C++.
 See the contribution by \citet{P056_adassxxv} in this conference for
 more discussion on the architecture of the LSST software stack.
