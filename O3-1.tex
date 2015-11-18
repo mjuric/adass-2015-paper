@@ -182,8 +182,8 @@ currently being constructed on the El Pe\~n\'{o}n peak of Cerro Pach\'{o}n in th
 Andes, a 3.2 gigapixel camera \citep{2010SPIE.7735E..0JK}, and a data management
 system, also currently under construction.
 
-In this paper, we review the science goals and the technical design of the
-LSST Data Management system (LSST DM; \url{http://dm.lsst.org}).
+In this paper, we review the science goals and technical design of the
+LSST Data Management system \citep[LSST DM; originally described in][]{2007ASPC..376....3K}.
 We begin by describing the overall architecture of the system in
 Section~\ref{sec:dm}, followed by a discussion of the planned data
 products in Section~\ref{sec:dp}. In Section~\ref{sec:dmstack}, we
@@ -234,7 +234,7 @@ Section~\ref{sec:dp}.
 % Edit that file and save it as PDF when an update is needed.
 %
 \begin{center}
-\includegraphics[width=0.9\textwidth,clip]{DMsandwich.pdf}
+\includegraphics[width=0.7\textwidth,clip]{DMsandwich.pdf}
 \end{center}
 \caption{The three-layered architecture of the data management system
 (application [red, top], middleware [purple, middle], and infrastructure [blue, bottom] layers) enables scalability, reliability, and evolutionary capability.}
@@ -416,7 +416,8 @@ extraction of scientifically useful characteristics of those objects.
 
 While firmly footed in this prior history, the LSST software stack has
 largely been written anew, for reasons of performance, extendability, and
-maintainability. All LSST codes are being developed with the intent of
+maintainability as well as stringent science and system quality requirements.
+All LSST codes are being developed with the intent of
 following software engineering best practices, including modularity, clear definition
 of interfaces, continuous integration,
 utilization of unit testing, a single set of documentation and coding
@@ -473,7 +474,7 @@ components of LSST data management system -- and especially the software
 stack -- will be of broader utility.  The LSST software stack is free
 software, licensed under the terms of the GNU General Public License,
 Version 3.  The stack prototype code and documentation are available via
-\url{http://ls.st/ug}.  Its open source nature, an open development process,
+\url{http://dm.lsst.org}. Its open source nature, an open development process,
 a long-term project commitment and a design that can be modified for use
 with other cameras may make it useful for the processing of imaging data
 beyond LSST.
