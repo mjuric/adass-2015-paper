@@ -175,8 +175,8 @@ data reduction pipeline.
 The Large Synoptic Survey Telescope (LSST; \url{http://lsst.org}) will be an
 automated astronomical survey system that will survey approximately
 $10,000$~deg$^2$ of the sky every few nights in six optical bands from 320
-to 1050\,nm \citep{2008arXiv0805.2366I}. Over its 10-year lifetime, it will
-uniformly and repeatedly image about $18,000$~deg$^2$ of the sky
+to 1050\,nm \citep{2008arXiv0805.2366I}. Over the planned 10-year baseline
+survey, it will uniformly and repeatedly image about $18,000$~deg$^2$ of the sky
 over $800$~times. These data will be used to explore
 a wide range of astrophysical questions, ranging from discovering
 ``killer'' asteroids to examining the nature of Dark Energy
@@ -194,7 +194,7 @@ We begin by describing the overall architecture of the system in
 Section~\ref{sec:dm}, followed by a discussion of the planned data
 products in Section~\ref{sec:dp}. In Section~\ref{sec:dmstack}, we
 discuss the software stack being developed for processing and serving
-of LSST data. We  conclude by pointing out opportunities this new codebase
+of LSST data. We  conclude by pointing out opportunities that this new codebase
 represents both for LSST and the astronomical software community as
 a whole, in Section~\ref{sec:summary}.
 
@@ -204,15 +204,16 @@ a whole, in Section~\ref{sec:summary}.
 The rapid cadence and scale of the LSST observing program will produce
 approximately 15 TB per night of raw imaging data\footnote{For
   comparison, the volume of all imaging data collected over a decade
-  and published in SDSS Data Release 7 \citep{2009ApJS..182..543A} is approximately 16 TB.}. The large data volume, the real-time aspects, and the complexity of processing involved makes it impractical to defer the data reduction to the LSST end-users. Instead, the data collected by the LSST system will be automatically reduced to scientifically useful catalogs and images by the LSST Data Management (DM) system.
+  and published in SDSS Data Release 7 \citep{2009ApJS..182..543A} is approximately 16 TB.}. The large data volume, the real-time aspects
+(to be explained below), and the complexity of processing involved makes it impractical to defer the data reduction to the LSST end-users. Instead, the data collected by the LSST system will be automatically reduced to scientifically useful catalogs and images by the LSST Data Management (DM) system.
 \\
 
 
 
 The principal functions of the LSST Data Management system \citep{lsstSRD} are to:
 \begin{itemize}
-\item Process, in real time, the incoming stream of exposures by archiving raw images, generating alerts to new sources or sources whose properties have changed significantly, and updating the relevant catalogs (``Level 1'' data products).
-\item Periodically process the accumulated survey data to provide a
+\item Within 60 seconds of observation, process the incoming stream of exposures by archiving raw images, generating alerts to new sources or sources whose properties have changed significantly, and updating the relevant catalogs (``Level 1'' data products).
+\item Periodically reprocess the accumulated survey data to provide a
   uniform photometric and astrometric calibration \citep[e.g.,][]{LSE-180}, measure the
   properties of all detected objects, and characterize objects based on their time-dependent behavior. The results of such a processing run form a {\em Data Release} (DR), which is a static, self-consistent data set suitable for use in performing scientific analyses of LSST data and publication of the results (the ``Level 2'' data products). All data releases will be archived for the entire operational life of the LSST
 archive, with the two most recent releases available in a
@@ -227,7 +228,7 @@ community-based standards   to the maximum possible extent. Provide
   transfers.
 \end{itemize}
 
-Over the ten years of LSST operations and 11 data releases, this processing will result in a cumulative {\em processed} data size
+Over the ten years of LSST survey operations and 11 data releases, this processing will result in a cumulative {\em processed} data size
 approaching 500 petabytes (PB) for imaging, and over 50 PB for the
 catalog databases. The final data release catalog database alone is expected
 to be approximately 15 PB in size. A more detailed overview of the data products will be given in
@@ -307,7 +308,8 @@ Data Products Definition Document \citep{DPDD}.
 
 \vskip 1em
 
-Two major categories of data products will be produced and delivered by LSST DM:
+Two major categories of data products will be produced and delivered by the DM
+system:
 \begin{itemize}
 \item {\bf Level 1 data products}, designed to support the discovery,
   characterization, and rapid follow-up of time-dependent phenomena
@@ -355,6 +357,10 @@ weak lensing studies.
 
 \end{itemize}
 
+The quality of all Level 1 and Level 2 data products will be extensively
+assessed, both automatically as well as manually, using the Science
+Data Quality Assurance (SDQA) pipelines \citep{LSE-63}.
+\\
 
 While a large majority of science cases will be adequately served by
 Level 1 and 2 data products, a limited number of highly specialized
@@ -395,10 +401,10 @@ Once completed, it will comprise of
 all science pipelines \citep{LDM-151, LDM-156} needed to accomplish LSST data processing tasks
 (e.g., calibration, single frame processing, co-addition, image
 differencing, multi-epoch measurement, asteroid orbit determination,
-etc.), the necessary data
+etc.), quality assessment pipelines, the necessary data
 access and orchestration middleware \citep{LDM-152}, the
 image store and catalog database \citep{LDM-135,Wang:2011:QDS:2063348.2063364}
-as well as the science user interface (SUI) components \citep{LDM-131}.
+as well as the science user interface components \citep[SUI;][]{LDM-131}.
 The SUI components are planned to be based on IPAC's Firefly toolkit,
 described by \citet{O10-1_adassxxv} later in this volume.
 \\
@@ -428,7 +434,9 @@ following software engineering best practices, including modularity, clear defin
 of interfaces, continuous integration,
 utilization of unit testing, a single set of documentation and coding
 standards. The primary user-facing implementation language is Python and, where
-necessary for performance reasons or when the algorithms require access to complex data structures, C++.
+necessary for performance reasons or when the algorithms require access to 
+complex data structures, we use C++ with SWIG wrappers
+\citep{Beazley:1996:SEU:1267498.1267513}.
 See the contribution by \citet{P056_adassxxv} in this conference for
 more discussion on the architecture of the LSST software stack.
 \\
@@ -467,7 +475,7 @@ has been used successfully to produce two data releases of HSC Survey data.
 \section{               Summary              }
 \label{sec:summary}
 
-The LSST has been envisioned as a highly automated survey system
+The LSST is envisioned to be a highly automated survey system
 designed to enable investigations of phenomena on timescales ranging
 from minutes to years, and covering approximately half of the sky
 \citep{2009arXiv0912.0201L}. A comprehensive data management system,
