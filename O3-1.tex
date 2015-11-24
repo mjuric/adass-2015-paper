@@ -153,13 +153,13 @@ Astronomy and eScience Institute}{Seattle}{WA}{98195}{USA}
 The Large Synoptic Survey Telescope (LSST; \citealt{2008arXiv0805.2366I}) is a
 large-aperture, wide-field, ground-based survey system that will image
 the sky in six optical bands from 320 to 1050 nm, uniformly covering approximately
-$18,000$~deg$^2$ of the sky over 800 times. The LSST telescope is currently
+$18,000$~deg$^2$ of the sky over 800 times. The LSST is currently
 under construction on Cerro Pach\'{o}n in Chile, and expected to enter operations
 in 2022. Once operational, the LSST will explore a wide range of
 astrophysical questions, from discovering ``killer'' asteroids
 to examining the nature of Dark Energy.
 
-The LSST telescope will generate on average 15 TB of data per night,
+The LSST will generate on average 15 TB of data per night,
 and will require a comprehensive Data Management system to reduce the
 raw data to scientifically useful catalogs and images with minimum human
 intervention. This processing will result in a real-time alert stream, and
@@ -169,7 +169,7 @@ To enable this processing, the LSST project is developing a new,
 general-purpose, high-performance, scalable, well documented, open source
 data processing software stack for O/IR surveys. Prototypes of this stack
 are already capable of processing data from existing cameras (e.g., SDSS,
-DECam, MegaCam), and form the basis of the Hyper-Supreme Cam (HSC) Survey
+DECam, MegaCam), and form the basis of the Hyper-Suprime Cam (HSC) Survey
 data reduction pipeline.
 
 \end{abstract}
@@ -209,7 +209,7 @@ The rapid cadence and scale of the LSST observing program will produce
 approximately 15 TB per night of raw imaging data\footnote{For
   comparison, the volume of all imaging data collected over a decade
   and published in SDSS Data Release 7 \citep{2009ApJS..182..543A} is approximately 16 TB.}. The large data volume, the real-time aspects
-(to be explained below), and the complexity of processing involved makes it impractical to defer the data reduction to the LSST end-users. Instead, the data collected by the LSST system will be automatically reduced to scientifically useful catalogs and images by the LSST Data Management (DM) system.
+(to be explained below), and the complexity of processing involved makes it impractical to defer the data reduction to the LSST end-users. Instead, the data collected by the LSST system will be automatically reduced to scientifically useful catalogs and images by the LSST Data Management system.
 \\
 
 
@@ -252,7 +252,7 @@ Section~\ref{sec:dp}.
 \label{Fig:DM1}
 \end{figure}
 
-The data management system is conceptually divided into three layers
+The Data Management system is conceptually divided into three layers
 \citep{LDM-148}: an infrastructure layer \citep{LDM-129} consisting of the computing, storage, and
 networking hardware and system software; a middleware layer \citep{LDM-152}, which
 handles distributed processing, data access, user interface, and
@@ -302,7 +302,7 @@ compute power).
 \section{             LSST Data Products                    }
 \label{sec:dp}
 
-Data collected by the LSST telescope and camera will be automatically processed to {\em data products} -- catalogs, alerts,
+Data collected by the LSST camera and telescope will be automatically processed to {\em data products} -- catalogs, alerts,
 and reduced images -- by the LSST Data Management system
 (\S~\ref{sec:dm}). These products are designed to be sufficient to
 enable a large majority of LSST science cases, without the need to
