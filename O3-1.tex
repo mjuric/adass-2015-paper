@@ -479,9 +479,12 @@ co-add can be browsed at \url{http://moe.astro.washington.edu/sdss}.}
 
 The LSST data management software has been prototyped for over eight
 years. It has been exercised in eight data challenges \citep[see e.g.][]{2010SPIE.7740E..1OK}, with increasing
-degrees of complexity. Besides processing simulated LSST data
-\citep{2014SPIE.9150E..14C, 0067-0049-218-1-14}, it
-has been used to process images from CFHTLS
+degrees of complexity. Advanced prototypes of the distributed, shared-nothing, database 
+being written for LSST -- Qserv -- have been tested on
+a 150-node cluster using 55 billion rows and 30 terabytes of
+simulated data \citep{Wang:2011:QDS:2063348.2063364}. Besides processing simulated LSST data
+\citep{2014SPIE.9150E..14C, 0067-0049-218-1-14}, LSST science pipelines
+have also been used to process images from CFHTLS
 and SDSS \citep{2012ApJS..203...21A}. As an example,
 Figure~\ref{Fig:DMStripe82} shows a small region in the vicinity of M2
 taken from a large co-addition of SDSS Stripe 82 data, generated with LSST
