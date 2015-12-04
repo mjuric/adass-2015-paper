@@ -178,9 +178,8 @@ to examining the nature of Dark Energy.
 The LSST will generate on average 15 TB of data per night,
 and will require a comprehensive Data Management system to reduce the
 raw data to scientifically useful catalogs and images with minimum human
-intervention. This processing will result in a real-time alert stream, and
+intervention. These reductions will result in a real-time alert stream, and
 eleven data releases over the 10-year duration of LSST operations.
-
 To enable this processing, the LSST project is developing a new,
 general-purpose, high-performance, scalable, well documented, open source
 data processing software stack for O/IR surveys. Prototypes of this stack
@@ -196,7 +195,7 @@ data reduction pipeline.
 The Large Synoptic Survey Telescope (LSST; \url{http://lsst.org}) will be an
 automated astronomical survey system that will survey approximately
 $10,000$~deg$^2$ of the sky every few nights in six optical bands from 320
-to 1050\,nm \citep{2008arXiv0805.2366I}. Over the planned 10-year baseline
+to 1050\,nm \citep{2008arXiv0805.2366I, lsstSRD}. Over the planned 10-year baseline
 survey, it will uniformly and repeatedly image about $18,000$~deg$^2$ of the sky
 over $800$~times. These data will be used to explore
 a wide range of astrophysical questions, ranging from discovering
@@ -206,18 +205,18 @@ a wide range of astrophysical questions, ranging from discovering
 The LSST survey system consists of a large-aperture, wide-field, ground-based telescope \citep{2014SPIE.9145E..1AG}
 currently being constructed on the El Pe\~n\'{o}n peak of Cerro Pach\'{o}n in the Chilean
 Andes, a 3.2 gigapixel camera \citep{2010SPIE.7735E..0JK}, and a data management
-system, also currently under construction.
+system, described here.
 
 In this paper, we review the science goals and technical design of the
 LSST Data Management system
-(LSST DM; described previously in \citet{2007ASPC..376....3K} and \citet{2010SPIE.7740E..1NK}).
+(LSST DM; described previously in \citealt{2007ASPC..376....3K} and \citealt{2010SPIE.7740E..1NK}).
 We begin by describing the overall architecture of the system in
 Section~\ref{sec:dm}, followed by a discussion of the planned data
 products in Section~\ref{sec:dp}. In Section~\ref{sec:dmstack}, we
 discuss the software stack being developed for processing and serving
 of LSST data. We  conclude by pointing out opportunities that this new codebase
 represents both for LSST and the astronomical software community as
-a whole, in Section~\ref{sec:summary}.
+a whole (in Section~\ref{sec:summary}).
 
 \section{ The LSST Data Management System }
 \label{sec:dm}
@@ -231,7 +230,7 @@ approximately 15 TB per night of raw imaging data\footnote{For
 
 
 
-The principal functions of the LSST Data Management system \citep{lsstSRD} are to:
+The principal functions of the LSST Data Management system are to:
 \begin{itemize}
 \item Within 60 seconds of observation, process the incoming stream of exposures by archiving raw images, generating alerts to new sources or sources whose properties have changed significantly, and updating the relevant catalogs (``Level 1'' data products).
 \item Periodically reprocess the accumulated survey data to provide a
@@ -241,12 +240,12 @@ archive, with the two most recent releases available in a
 queryable database.
 \item Facilitate the creation of added-value (``Level 3'') data products, by providing suitable software,
   application programming interfaces (APIs),
-and computing infrastructure at the LSST data access centers.
-\item Make all LSST data available to the community through an interface that utilizes
-community-based standards   to the maximum possible extent. Provide
-  enough processing, storage, and network bandwidth to enable user
+and computing infrastructure at the LSST data access centers. Provide
+  processing, storage, and network bandwidth to enable user
   analyses of the data without the need for petabyte-scale data
   transfers.
+\item Make all LSST data available to the community through interfaces that utilize
+community-accepted standards   to the maximum possible extent. 
 \end{itemize}
 
 Over the ten years of LSST survey operations and 11 data releases, this processing will result in a cumulative {\em processed} data size
@@ -312,7 +311,7 @@ the satellite center in Lyon.
 The data will be transported between the centers over existing and new high-speed optical fiber
 links from South America to the U.S., and from the U.S. to France (see Fig.~\ref{Fig:DM2}).
 The data processing centers will have substantial computing
-power (e.g., the central facility will peak at $\sim 1.6$~petaflops of
+power (e.g., the central facility is expected to peak at $\sim1.6$~petaFLOPS of
 compute power).
 \\
 
@@ -418,17 +417,17 @@ reduction and the writing of custom, user-driven, code for Level 3
 processing. Its design and implementation are led by a team distributed
 across six institutions (the LSST Project Management Office, IPAC, NCSA,
 Princeton University, SLAC National Laboratory and the University
-of Washington) but also includes contributions from external contributors.
-Once completed, it will comprise of
+of Washington) but also includes contributions from the broader LSST
+community. Once completed, it will comprise of
 all science pipelines \citep{LDM-151, LDM-156} needed to accomplish LSST data processing tasks
 (e.g., calibration, single frame processing, co-addition, image
 differencing, multi-epoch measurement, asteroid orbit determination,
 etc.), quality assessment pipelines, the necessary data
 access and orchestration middleware \citep{LDM-152}, the
-image store and catalog database \citep{LDM-135,Wang:2011:QDS:2063348.2063364}
+image store and catalog database \citep{LDM-135}
 as well as the science user interface components \citep[SUI;][]{LDM-131}.
 The SUI components are planned to be based on IPAC's Firefly toolkit,
-described by \citet{O10-1_adassxxv} later in this volume.
+described by \citet{O10-1_adassxxv} elsewhere in this volume.
 \\
 
 Algorithm development for the LSST software builds on the expertise
@@ -459,7 +458,7 @@ standards. The primary user-facing implementation language is Python and, where
 necessary for performance reasons or when the algorithms require access to 
 complex data structures, we use C++ with SWIG wrappers
 \citep{Beazley:1996:SEU:1267498.1267513}.
-See the contribution by \citet{P056_adassxxv} in this conference for
+See the contribution by \citet{P056_adassxxv} elsewhere in this volume for
 more discussion on the architecture of the LSST software stack.
 \\
 
@@ -483,7 +482,7 @@ co-add can be browsed at \url{http://moe.astro.washington.edu/sdss}.}
 The LSST data management software has been prototyped for over eight
 years. It has been exercised in eight data challenges \citep[see e.g.][]{2010SPIE.7740E..1OK}, with increasing
 degrees of complexity. Advanced prototypes of the distributed, shared-nothing, database 
-being written for LSST -- Qserv -- have been tested on
+being written for LSST ({\em ``Qserv''}) have been tested on
 a 150-node cluster using 55 billion rows and 30 terabytes of
 simulated data \citep{Wang:2011:QDS:2063348.2063364, qserv-s15tests}. Besides processing simulated LSST data
 \citep{2014SPIE.9150E..14C, 0067-0049-218-1-14}, LSST science pipelines
