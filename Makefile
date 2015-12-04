@@ -12,6 +12,6 @@ tarball:
 	@rm -rf $(TARBALL)
 	@mkdir $(TARBALL)
 	@echo "Generated from revision '$(REVISION)' of '$(REMOTE)'" > $(TARBALL)/README.md
-	@cp -a *.pdf *.tex *.bib $(TARBALL)
+	@cp -a *.tex *.bib *.eps $(TARBALL)
 	@tar cjvf $(TARBALL).tar.gz $(TARBALL)
 	@echo The manuscript has been tarballed into $(TARBALL).tar.gz
