@@ -5,3 +5,7 @@
 *.bbl
 *.blg
 *.tar.gz
+DEADJOE
+*-eps-converted-to.pdf
+O3-1_v*/
+arxiv_v*/
