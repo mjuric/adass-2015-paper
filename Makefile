@@ -1,6 +1,6 @@
 REVISION := $(shell git describe --dirty --always)
 REMOTE := $(shell git config --get remote.origin.url)
-TARBALL := O3-1_v5
+TARBALL := O3-1_v6
 ARXIV := arxiv_v1
 
 all:
